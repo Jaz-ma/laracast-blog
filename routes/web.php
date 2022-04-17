@@ -16,21 +16,16 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get('/', function() {
-    return response()->json([
-     'stuff' => phpinfo()
+
+Route::get('/', function () {
+    return view('posts',[
+        'posts' =>  Post::all()
     ]);
- });
+});
 
-// Route::get('/', function () {
-//     return view('posts',[
-//         'posts' =>  Post::all()
-//     ]);
-// });
+Route::get('post/{post}', function ($id) {
 
-Route::get('post/{post}', function ($slug) {
-
-    $post = Post::findOrFail($slug);
+    $post = Post::findOrFail($id);
 
     return view('post',[
         'post'=> $post

@@ -5,7 +5,7 @@
 
         <article class="{{$loop->even ? 'foobar':''}} ">
 
-            <a href="/post/{{$post->slug}}">
+            <a href="/post/{{$post->id}}">
                 <h1>
                     {{$post->title}}
                 </h1>

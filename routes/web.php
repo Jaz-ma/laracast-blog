@@ -1,4 +1,6 @@
 <?php
+
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -24,7 +26,7 @@ Illuminate\Support\Facades\DB::listen(function($query){
 
 Route::get('/', function () {
     return view('posts',[
-        'posts' =>  Post::all()
+        'posts' =>  Post::latest()->with("category",'author')->get()
     ]);
 });
 
@@ -36,4 +38,10 @@ Route::get('post/{post:slug}', function (Post $post) {
     ]);
 
 
+});
+
+Route::get('categories/{category}',function(Category $category){
+    return view('post',[
+        'post'=>$category->posts
+    ]);
 });

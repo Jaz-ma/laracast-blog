@@ -12,14 +12,20 @@
             </a>
 
             <p>
-                <a href="/categories/{{$post->category->slug}}">
+
+                by
+                <a href="/author/{{$post->author->name}}">
+                   {{$post->author->name}}
+                </a>
+                in
+                <a href="/categories/{{$post->category->id}}">
                     {{$post->category->name}}
                 </a>
             </p>
-            <div>
+            <p>
 
                 {{$post->excerpt}}
-            </div>
+            </p>
         </article>
   @endforeach
 </x-layout>

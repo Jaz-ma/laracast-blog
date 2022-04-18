@@ -1,5 +1,6 @@
 <?php
 use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -17,18 +18,21 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 
+Illuminate\Support\Facades\DB::listen(function($query){
+    logger($query->sql);
+});
+
 Route::get('/', function () {
     return view('posts',[
         'posts' =>  Post::all()
     ]);
 });
 
-Route::get('post/{post}', function ($id) {
-
-    $post = Post::findOrFail($id);
+Route::get('post/{post:slug}', function (Post $post) {
 
     return view('post',[
-        'post'=> $post
+
+        'post'=>$post
     ]);
 
 

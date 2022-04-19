@@ -14,7 +14,7 @@
             <p>
 
                 by
-                <a href="/author/{{$post->author->name}}">
+                <a href="/author/{{$post->author->userName}}">
                    {{$post->author->name}}
                 </a>
                 in
